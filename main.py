@@ -1,0 +1,146 @@
+# stack for storing elements
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, element):
+        self.stack.append(element)
+
+    def pop(self):
+        return self.stack.pop()
+
+    def empty(self):
+        if not self.stack:
+            return True
+        else:
+            return False
+
+    def top(self):
+        return self.stack[-1]
+
+    def size(self):
+        return len(self.stack)
+
+
+# transforms ordinary expression to rpn
+class TransformExpression:
+    def __init__(self, stack: Stack):
+        self.stack = stack
+        self.priority = {
+            '+': 1,
+            '-': 1,
+            '*': 2,
+            '/': 2,
+            '^': 3
+        }
+
+    # expression string to expression list
+    def to_list(self, expression: str) -> list:
+        expression = expression.replace(' ', '')
+        exp_list = []
+        current_number = ''
+        for element in expression:
+            if element.isdigit() or element == '.':
+                current_number += element
+            else:
+                exp_list.append(current_number)
+                exp_list.append(element)
+                current_number = ''
+        exp_list.append(current_number)
+
+        new_exp_list = []
+        for element in exp_list:
+            if element.isdigit():
+                new_exp_list.append(int(element))
+            elif '.' in element:
+                new_exp_list.append(float(element))
+            else:
+                new_exp_list.append(element)
+        return new_exp_list
+
+    # expression list to rpn expression string
+    def postfix(self, expression: list) -> str:
+        postfix_exp = ''
+        for el in expression:
+            # checks if an element is integer or float
+            if isinstance(el, int) or isinstance(el, float):
+                postfix_exp += str(el) + ' '
+            elif el in self.priority.keys():
+                # checks if stack is not empty and the top element is not an opening brake
+                if not self.stack.empty() and self.stack.top() != '(':
+                    # checks operator's priority
+                    if self.priority[el] > self.priority[self.stack.top()]:
+                        self.stack.push(el)
+                    else:
+                        while not self.stack.empty() and self.stack.top() != '(' \
+                                and self.priority[el] <= self.priority[self.stack.top()]:
+                            postfix_exp += self.stack.pop() + ' '
+                        self.stack.push(el)
+
+                else:
+                    self.stack.push(el)
+            # opening brake
+            elif el == '(':
+                self.stack.push(el)
+            # closing brake
+            elif el == ')':
+                # pushes every operator from stack to rpn string
+                while not self.stack.empty() and self.stack.top() != '(':
+                    postfix_exp += self.stack.pop() + ' '
+                # deletes an opening brake
+                self.stack.pop()
+        # pushes every operator from stack to rpn string
+        while not self.stack.empty():
+            postfix_exp += self.stack.pop() + ' '
+        return postfix_exp
+
+
+# calculating answer from rpn
+class Solution:
+
+    def __init__(self, post: str):
+        self.post = post
+
+    # transform string to list
+    def display_calculation(self, post: str):
+        answer = []
+        post = post.split()
+        stack_solution = []
+        for element in post:
+            if element.isdigit():
+                stack_solution.append(int(element))
+            elif '.' in element:
+                stack_solution.append(float(element))
+            else:
+                stack_solution.append(element)
+
+        # basic mathematical operations
+        for t in stack_solution:
+            if isinstance(t, int) or isinstance(t, float):
+                answer.append(t)
+            else:
+                a = answer.pop()
+                b = answer.pop()
+                if t == "+":
+                    c = b + a
+                elif t == '-':
+                    c = b - a
+                elif t == '*':
+                    c = b * a
+                elif t == '/':
+                    c = b / a
+                elif t == '^':
+                    c = b ** a
+                answer.append(c)
+        print(answer[-1])
+
+
+if __name__ == '__main__':
+    stack_test = Stack()
+    RPN = TransformExpression(stack_test)
+    equation = input('Your expression: ')
+    rpn_list = RPN.to_list(equation)
+    post = RPN.postfix(rpn_list)
+    print('RPN view: ', post)
+    num1 = Solution(post)
+    num1.display_calculation(post)

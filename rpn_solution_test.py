@@ -13,12 +13,12 @@ class CalculateExpression(unittest.TestCase):
     Tests calculating expression
     """
 
-    def test_two_digit_random_expression(self):
+    def test_random_expression(self):
         """
         Checks calculations with two-digit numbers
         """
 
-        nums = [random.randint(10, 99) for i in range(5)]
+        nums = [random.randint(10, 1000) for i in range(5)]
 
         equation = f'{nums[1]} * {nums[2]} + {nums[0]} ^ 4 - {nums[3]} / {nums[4]}'
         print(equation)
@@ -40,9 +40,9 @@ class CalculateExpression(unittest.TestCase):
         """
         nums = [random.randint(1, 99) for i in range(6)]
 
-        equation = f'{nums[1]} * ({nums[2]} + {nums[3]}) - ({nums[0]} + {nums[4]}) / {nums[5]}'
+        equation = f'{nums[1]} * ({nums[2]} + {nums[3]} ^ 2) - ({nums[0]} + {nums[4]}) / {nums[5]}'
         print(equation)
-        expected = nums[1] * (nums[2] + nums[3]) - (nums[0] + nums[4]) / nums[5]
+        expected = nums[1] * (nums[2] + nums[3] ** 2) - (nums[0] + nums[4]) / nums[5]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)

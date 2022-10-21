@@ -62,7 +62,7 @@ class TransformExpression:
     def postfix(self, expression: list) -> str:
         postfix_exp = ''
         for el in expression:
-            # checks if an element is integer or float
+            # checks if an element is integer (for now)
             if isinstance(el, int) or isinstance(el, float):
                 postfix_exp += str(el) + ' '
             elif el in self.priority.keys():
@@ -103,6 +103,8 @@ class Solution:
 
     # transform string to list
     def display_calculation(self, post: str):
+        if not post:
+            return None
         answer = []
         post = post.split()
         stack_solution = []
@@ -132,7 +134,7 @@ class Solution:
                 elif t == '^':
                     c = b ** a
                 answer.append(c)
-        print(answer[-1])
+        return answer[-1]
 
 
 if __name__ == '__main__':
@@ -143,4 +145,4 @@ if __name__ == '__main__':
     post = RPN.postfix(rpn_list)
     print('RPN view: ', post)
     num1 = Solution(post)
-    num1.display_calculation(post)
+    print(num1.display_calculation(post))

@@ -66,7 +66,7 @@ class TransformExpression:
             if isinstance(el, int) or isinstance(el, float):
                 postfix_exp += str(el) + ' '
             elif el in self.priority.keys():
-                # checks if stack is not empty and the top element is not an opening brake
+                # checks if stack is not empty and the top element is not an opening bracket
                 if not self.stack.empty() and self.stack.top() != '(':
                     # checks operator's priority
                     if self.priority[el] > self.priority[self.stack.top()]:
@@ -79,15 +79,15 @@ class TransformExpression:
 
                 else:
                     self.stack.push(el)
-            # opening brake
+            # opening bracket
             elif el == '(':
                 self.stack.push(el)
-            # closing brake
+            # closing bracket
             elif el == ')':
                 # pushes every operator from stack to rpn string
                 while not self.stack.empty() and self.stack.top() != '(':
                     postfix_exp += self.stack.pop() + ' '
-                # deletes an opening brake
+                # deletes an opening bracket
                 self.stack.pop()
         # pushes every operator from stack to rpn string
         while not self.stack.empty():

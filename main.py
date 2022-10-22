@@ -143,22 +143,21 @@ class Solution:
         """
         if not expression:
             return None
-        flag = 0
-        for element in expression:
-            if element.isdigit():
-                flag += 1
-        if flag < 2:
-            return None
+        counter = 0
         answer = []
         expression = expression.split()
         stack_solution = []
         for element in expression:
             if element.isdigit():
                 stack_solution.append(int(element))
+                counter += 1
             elif '.' in element:
                 stack_solution.append(float(element))
+                counter += 1
             else:
                 stack_solution.append(element)
+        if counter < 1:
+            return None
         for element in stack_solution:
             if isinstance(element, (float, int)):
                 answer.append(element)

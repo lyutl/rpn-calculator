@@ -67,7 +67,7 @@ class TransformExpression:
         expression = expression.replace(' ', '')
         exp_list = []
         current_number = ''
-        if expression[0] == '-':
+        if expression and expression[0] == '-':
             expression = '0' + expression
         for element in expression:
             if element.isdigit() or element == '.':
@@ -96,6 +96,14 @@ class TransformExpression:
         """
         Returns a string with RPN expression
         """
+        counter = 0
+        for element in expression:
+            if element == '(':
+                counter += 1
+            if element == ')':
+                counter -= 1
+        if counter != 0:
+            return None
         postfix_exp = ''
         for el in expression:
             if isinstance(el, int) or isinstance(el, float):
@@ -136,6 +144,14 @@ class Solution:
         """
         if not expression:
             return None
+        flag = 0
+        for element in expression:
+            if element.isdigit():
+                flag += 1
+                if flag == 2:
+                    break
+        if flag < 2:
+            return None
         answer = []
         expression = expression.split()
         stack_solution = []
@@ -146,24 +162,24 @@ class Solution:
                 stack_solution.append(float(element))
             else:
                 stack_solution.append(element)
-        for t in stack_solution:
-            if isinstance(t, int) or isinstance(t, float):
-                answer.append(t)
+        for element in stack_solution:
+            if isinstance(element, int) or isinstance(element, float):
+                answer.append(element)
             else:
-                a = answer.pop()
-                b = answer.pop()
-                if t == "+":
-                    c = b + a
-                elif t == '-':
-                    c = b - a
-                elif t == '*':
-                    c = b * a
-                elif t == '/':
-                    c = b / a
-                    c_str = str(c)
+                first_number = answer.pop()
+                second_number = answer.pop()
+                if element == "+":
+                    result = second_number + first_number
+                elif element == '-':
+                    result = second_number - first_number
+                elif element == '*':
+                    result = second_number * first_number
+                elif element == '/':
+                    result = second_number / first_number
+                    c_str = str(result)
                     if c_str[-2:] == '.0':
-                        c = int(c)
-                elif t == '^':
-                    c = b ** a
-                answer.append(c)
+                        result = int(result)
+                elif element == '^':
+                    result = second_number ** first_number
+                answer.append(result)
         return answer[-1]

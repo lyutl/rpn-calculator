@@ -28,6 +28,7 @@ def bt_click(item):
                          '.+', '.-', '.*', './', '.^']
     if EXPRESSION[-2:] in unexpected_combos:
         EXPRESSION = EXPRESSION[:-1]
+        return EXPRESSION
     input_text.set(EXPRESSION)
 
 
@@ -74,7 +75,8 @@ LEFT_BRACKET = Button(btns_frame,text="(",fg="black", width=10, height=3, bd=0, 
                       command=lambda:bt_click('(')).grid(row=0,column=1,padx=1,pady=1)
 LEFT_BRACKET.pack()
 RIGHT_BRACKET = Button(btns_frame,text=")",fg="black", width=10, height=3, bd=0, bg="#eee", \
-                       cursor="hand2",command=lambda:bt_click(')')).grid(row=0,column=2,padx=1,pady=1)
+                       cursor="hand2",\
+                       command=lambda:bt_click(')')).grid(row=0,column=2,padx=1,pady=1)
 RIGHT_BRACKET.pack()
 DIVIDE = Button(btns_frame,text="/",fg="black", width=10, height=3, bd=0, bg="#eee", \
                 cursor="hand2",command=lambda:bt_click("/")).grid(row=0, column=3, padx=1, pady=1)

@@ -141,6 +141,8 @@ class Solution:
         """
         Returns calculated result
         """
+        if not expression:
+            return None
         flag = 0
         for element in expression:
             if element.isdigit():

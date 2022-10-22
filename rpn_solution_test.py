@@ -99,45 +99,11 @@ class WrongInputExpression(unittest.TestCase):
     Tests cases with wrong input
     """
 
-    def test_wrong_type_of_input(self):
-        """
-        Tests if non-string input returns None
-        """
-        expression = [13, '*', 12, '+', 67]
-        expected = None
-
-        stack_test = Stack()
-        RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
-
-        num1 = Solution(post)
-        actual = num1.display_calculation(post)
-
-        self.assertEqual(expected, actual)
-
-    def test_wrong_type_of_symbols(self):
-        """
-        Tests if input with non-suitable symbols returns None
-        """
-        expression = '{5 + 67} - [b3e$%] * _89'
-        expected = None
-
-        stack_test = Stack()
-        RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
-
-        num1 = Solution(post)
-        actual = num1.display_calculation(post)
-
-        self.assertEqual(expected, actual)
-
     def test_empty_expression(self):
         """
         Tests if empty input returns None
         """
-        expression = ' '
+        expression = ''
         expected = None
 
         stack_test = Stack()

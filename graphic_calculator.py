@@ -17,6 +17,9 @@ if __name__ == '__main__':
 
 
 def btn_click(item):
+    """
+    docstring
+    """
     global EXPRESSION
     EXPRESSION = EXPRESSION + str(item)
     unexpected_combos = ['+-', '+*', '+/', '+^', '-+', '-*', '-/', '-^', '*+', '*-',
@@ -29,12 +32,18 @@ def btn_click(item):
 
 
 def bt_clear():
+    """
+    docstring
+    """
     global EXPRESSION
     EXPRESSION = ""
     input_text.set("")
 
 
 def bt_equal():
+    """
+    docstring
+    """
     global EXPRESSION
     rpn_list = RPN.to_list(EXPRESSION)
     num1 = Solution(RPN.transformation(rpn_list))

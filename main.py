@@ -91,7 +91,7 @@ class TransformExpression:
                 new_exp_list.append(element)
         return new_exp_list
 
-    def postfix(self, expression: list) -> str:
+    def transformation(self, expression: list) -> str:
         """
         Returns a string with RPN expression
         """
@@ -129,7 +129,7 @@ class Solution:
     def __init__(self, expression: str):
         self.post = expression
 
-    def display_calculation(self, expression: str):
+    def display_calculation(self, expression: str) -> list or None:
         """
         Returns calculated result
         """
@@ -186,8 +186,8 @@ def bt_clear():
 def bt_equal():
     global expression
     rpn_list = RPN.to_list(expression)
-    num1 = Solution(RPN.postfix(rpn_list))
-    result = num1.display_calculation(RPN.postfix(rpn_list))
+    num1 = Solution(RPN.transformation(rpn_list))
+    result = num1.display_calculation(RPN.transformation(rpn_list))
     result_str = str(result)
     if result_str[-2:] == '01':
         result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01', '', result_str)

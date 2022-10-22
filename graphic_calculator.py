@@ -29,6 +29,7 @@ def btn_click(item):
     if EXPRESSION[-2:] in unexpected_combos:
         EXPRESSION = EXPRESSION[:-1]
     input_text.set(EXPRESSION)
+    return(EXPRESSION)
 
 
 def bt_clear():
@@ -38,7 +39,7 @@ def bt_clear():
     global EXPRESSION
     EXPRESSION = ""
     input_text.set("")
-
+    return(EXPRESSION)
 
 def bt_equal():
     """
@@ -54,7 +55,7 @@ def bt_equal():
         result = float(result_str)
     input_text.set(result)
     EXPRESSION = result_str
-
+    return(EXPRESSION)
 
 input_text = StringVar()
 

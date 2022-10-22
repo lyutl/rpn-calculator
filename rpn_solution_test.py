@@ -10,15 +10,15 @@ from main import Stack, TransformExpression, Solution
 
 class CalculateExpression(unittest.TestCase):
     """
-    Tests calculating expression
+    Tests calculations
     """
 
     def test_random_expression(self):
         """
-        Checks calculations with two-digit numbers
+        Checks calculations with random numbers
         """
 
-        nums = [random.randint(10, 1000) for i in range(5)]
+        nums = [random.randint(1, 1000) for i in range(5)]
 
         equation = f'{nums[1]} * {nums[2]} + {nums[0]} ^ 4 - {nums[3]} / {nums[4]}'
         print(equation)
@@ -38,11 +38,11 @@ class CalculateExpression(unittest.TestCase):
         """
         Checks calculations with brackets
         """
-        nums = [random.randint(1, 99) for i in range(6)]
+        nums = [random.randint(1, 1000) for i in range(6)]
 
-        equation = f'{nums[1]} * ({nums[2]} + {nums[3]} ^ 2) - ({nums[0]} + {nums[4]}) / {nums[5]}'
+        equation = f'{nums[1]} * (({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]})) / {nums[5]}'
         print(equation)
-        expected = nums[1] * (nums[2] + nums[3] ** 2) - (nums[0] + nums[4]) / nums[5]
+        expected = nums[1] * ((nums[2] + nums[3] ** 4) - (nums[0] + nums[4])) / nums[5]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
@@ -58,11 +58,11 @@ class CalculateExpression(unittest.TestCase):
         """
         Checks calculations with float numbers
         """
-        nums = [random.uniform(1, 99) for i in range(6)]
+        nums = [random.uniform(1, 1000) for i in range(6)]
 
-        equation = f'{nums[1]} * ({nums[2]} + {nums[3]}) - ({nums[0]} + {nums[4]}) / {nums[5]}'
+        equation = f'{nums[1]} * ({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]}) / {nums[5]}'
         print(equation)
-        expected = nums[1] * (nums[2] + nums[3]) - (nums[0] + nums[4]) / nums[5]
+        expected = nums[1] * (nums[2] + nums[3] ** 4) - (nums[0] + nums[4]) / nums[5]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
@@ -77,7 +77,7 @@ class CalculateExpression(unittest.TestCase):
 
 class WrongInputExpression(unittest.TestCase):
     """
-    Tests calculating expression
+    Tests cases with wrong input
     """
 
     def test_wrong_type_of_input(self):
@@ -101,7 +101,7 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if input with non-suitable symbols returns None
         """
-        equation = '5ac67be'
+        equation = '{5 + 67} - [b3e$%] * _89'
         expected = None
 
         stack_test = Stack()
@@ -136,7 +136,7 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if program returns the same number in case with no operation digits
         """
-        num = random.randint(100, 1000)
+        num = random.randint(1, 1000)
 
         equation = f'{num}'
         print(equation)
@@ -149,6 +149,42 @@ class WrongInputExpression(unittest.TestCase):
         post = RPN.postfix(rpn_list)
         num1 = Solution(post)
 
+        actual = num1.display_calculation(post)
+
+        self.assertEqual(expected, actual)
+
+    def test_only_operation_digits(self):
+        """
+        Tests if program returns None in case with no operation digits
+        """
+        equation = f'+-*/()'
+        expected = None
+
+        stack_test = Stack()
+
+        RPN = TransformExpression(stack_test)
+        rpn_list = RPN.to_list(equation)
+        post = RPN.postfix(rpn_list)
+        num1 = Solution(post)
+
+        actual = num1.display_calculation(post)
+
+        self.assertEqual(expected, actual)
+
+    def test_expression_with_unclosed_brackets(self):
+        """
+        Tests if program returns None in case with wrong brackets
+        """
+        equation = '12 + 13 * ((14 + 15) / 16 - 17'
+        print(equation)
+        expected = None
+
+        stack_test = Stack()
+        RPN = TransformExpression(stack_test)
+        rpn_list = RPN.to_list(equation)
+        post = RPN.postfix(rpn_list)
+
+        num1 = Solution(post)
         actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)

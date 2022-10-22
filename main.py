@@ -29,8 +29,7 @@ class Stack:
         """
         if not self.stack:
             return True
-        else:
-            return False
+        return False
 
     def top(self):
         """
@@ -104,25 +103,24 @@ class TransformExpression:
                 counter -= 1
         if counter != 0:
             return None
-        
         postfix_exp = ''
-        for el in expression:
-            if isinstance(el, int) or isinstance(el, float):
-                postfix_exp += str(el) + ' '
-            elif el in self.priority.keys():
+        for element in expression:
+            if isinstance(element, (float, int)):
+                postfix_exp += str(element) + ' '
+            elif element in self.priority:
                 if not self.stack.empty() and self.stack.top() != '(':
-                    if self.priority[el] > self.priority[self.stack.top()]:
-                        self.stack.push(el)
+                    if self.priority[element] > self.priority[self.stack.top()]:
+                        self.stack.push(element)
                     else:
                         while not self.stack.empty() and self.stack.top() != '(' \
-                                and self.priority[el] <= self.priority[self.stack.top()]:
+                                and self.priority[element] <= self.priority[self.stack.top()]:
                             postfix_exp += self.stack.pop() + ' '
-                        self.stack.push(el)
+                        self.stack.push(element)
                 else:
-                    self.stack.push(el)
-            elif el == '(':
-                self.stack.push(el)
-            elif el == ')':
+                    self.stack.push(element)
+            elif element == '(':
+                self.stack.push(element)
+            elif element == ')':
                 while not self.stack.empty() and self.stack.top() != '(':
                     postfix_exp += self.stack.pop() + ' '
                 self.stack.pop()
@@ -145,44 +143,39 @@ class Solution:
         """
         if not expression:
             return None
-        
-        flag = 0
-        for element in expression:
-            if element.isdigit():
-                flag += 1
-                if flag == 2:
-                    break
-        if flag < 2:
-            return None
-        
+        counter = 0
         answer = []
         expression = expression.split()
         stack_solution = []
         for element in expression:
             if element.isdigit():
                 stack_solution.append(int(element))
+                counter += 1
             elif '.' in element:
                 stack_solution.append(float(element))
+                counter += 1
             else:
                 stack_solution.append(element)
-        for t in stack_solution:
-            if isinstance(t, int) or isinstance(t, float):
-                answer.append(t)
+        if counter < 1:
+            return None
+        for element in stack_solution:
+            if isinstance(element, (float, int)):
+                answer.append(element)
             else:
-                a = answer.pop()
-                b = answer.pop()
-                if t == "+":
-                    c = b + a
-                elif t == '-':
-                    c = b - a
-                elif t == '*':
-                    c = b * a
-                elif t == '/':
-                    c = b / a
-                    c_str = str(c)
+                first_number = answer.pop()
+                second_number = answer.pop()
+                if element == "+":
+                    result = second_number + first_number
+                elif element == '-':
+                    result = second_number - first_number
+                elif element == '*':
+                    result = second_number * first_number
+                elif element == '/':
+                    result = second_number / first_number
+                    c_str = str(result)
                     if c_str[-2:] == '.0':
-                        c = int(c)
-                elif t == '^':
-                    c = b ** a
-                answer.append(c)
+                        result = int(result)
+                elif element == '^':
+                    result = second_number ** first_number
+                answer.append(result)
         return answer[-1]

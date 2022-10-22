@@ -138,11 +138,11 @@ class Solution:
             return None
         
        flag = 0
-        for element in expression:
-            if element.isdigit():
-                flag += 1
-                if flag == 2:
-                    break
+       for element in expression:
+           if element.isdigit():
+               flag += 1
+               if flag == 2:
+                   break
         if flag < 2:
             return None
 

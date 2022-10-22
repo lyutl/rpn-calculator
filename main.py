@@ -96,6 +96,15 @@ class TransformExpression:
         """
         Returns a string with RPN expression
         """
+        counter = 0
+        for element in expression:
+            if element == '(':
+                counter += 1
+            if element == ')':
+                counter -= 1
+        if counter != 0:
+            return None
+        
         postfix_exp = ''
         for el in expression:
             if isinstance(el, int) or isinstance(el, float):
@@ -144,15 +153,6 @@ class Solution:
                 if flag == 2:
                     break
         if flag < 2:
-            return None
-
-        counter = 0
-        for element in expression:
-            if element == '(':
-                counter += 1
-            if element == ')':
-                counter -= 1
-        if counter != 0:
             return None
         
         answer = []

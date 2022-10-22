@@ -19,6 +19,12 @@ if __name__ == '__main__':
 def btn_click(item):
     global expression
     expression = expression + str(item)
+    unexpected_combos = ['+-', '+*', '+/', '+^', '-+', '-*', '-/', '-^', '*+', '*-',
+                         '*/', '*^', '/+', '/-', '/*', '/^', '^+', '^-', '^*', '^/',
+                         '++', '--', '**', '//', '^^', '+.', '-.', '*.', '/.', '^.',
+                         '.+', '.-', '.*', './', '.^']
+    if expression[-2:] in unexpected_combos:
+        expression = expression[:-1]
     input_text.set(expression)
 
 

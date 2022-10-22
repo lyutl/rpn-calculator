@@ -148,7 +148,7 @@ class Solution:
         expression = expression.split()
         stack_solution = []
         for element in expression:
-            if element.isdigit():
+            if element.isdigit() or '.' in element:
                 stack_solution.append(int(element))
                 counter += 1
             elif '.' in element:
@@ -179,3 +179,4 @@ class Solution:
                     result = second_number ** first_number
                 answer.append(result)
         return answer[-1]
+

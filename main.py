@@ -136,6 +136,24 @@ class Solution:
         """
         if not expression:
             return None
+        
+        flag = 0
+        for element in expression:
+            if element.isdigit():
+                flag = 1
+                break
+        if flag == 0:
+            return None
+
+        counter = 0
+        for element in expression:
+            if element == '(':
+                counter += 1
+            if element == ')':
+                counter -= 1
+        if counter != 0:
+            return None
+        
         answer = []
         expression = expression.split()
         stack_solution = []

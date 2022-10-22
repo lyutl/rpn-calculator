@@ -143,7 +143,7 @@ class Solution:
         """
         if not expression:
             return None
-        counter = 0
+
         answer = []
         expression = expression.split()
         stack_solution = []
@@ -156,8 +156,7 @@ class Solution:
                 counter += 1
             else:
                 stack_solution.append(element)
-        if counter < 1:
-            return None
+
         for element in stack_solution:
             if isinstance(element, (float, int)):
                 answer.append(element)

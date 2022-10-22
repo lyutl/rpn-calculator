@@ -26,7 +26,7 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)
@@ -46,7 +46,7 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)
@@ -66,7 +66,7 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)
@@ -89,7 +89,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)
@@ -106,7 +106,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)
@@ -124,7 +124,7 @@ class WrongInputExpression(unittest.TestCase):
 
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
         actual = num1.display_calculation(post)
@@ -145,7 +145,7 @@ class WrongInputExpression(unittest.TestCase):
 
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
         actual = num1.display_calculation(post)
@@ -163,7 +163,7 @@ class WrongInputExpression(unittest.TestCase):
 
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
         actual = num1.display_calculation(post)
@@ -181,7 +181,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
-        post = RPN.postfix(rpn_list)
+        post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
         actual = num1.display_calculation(post)

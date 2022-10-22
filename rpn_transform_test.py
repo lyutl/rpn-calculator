@@ -28,7 +28,7 @@ class RPNTransformation(unittest.TestCase):
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
 
-        actual = RPN.postfix(rpn_list)
+        actual = RPN.transformation(rpn_list)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)
@@ -47,7 +47,7 @@ class RPNTransformation(unittest.TestCase):
         RPN = TransformExpression(stack_test)
         rpn_list = RPN.to_list(equation)
 
-        actual = RPN.postfix(rpn_list)
+        actual = RPN.transformation(rpn_list)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)

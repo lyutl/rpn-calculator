@@ -67,7 +67,7 @@ class TransformExpression:
         expression = expression.replace(' ', '')
         exp_list = []
         current_number = ''
-        if expression[0] == '-':
+        if expression and expression[0] == '-':
             expression = '0' + expression
         for element in expression:
             if element.isdigit() or element == '.':

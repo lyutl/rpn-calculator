@@ -29,8 +29,7 @@ class Stack:
         """
         if not self.stack:
             return True
-        else:
-            return False
+        return False
 
     def top(self):
         """
@@ -106,7 +105,7 @@ class TransformExpression:
             return None
         postfix_exp = ''
         for el in expression:
-            if isinstance(el, int) or isinstance(el, float):
+            if isinstance(el, (float, int)):
                 postfix_exp += str(el) + ' '
             elif el in self.priority.keys():
                 if not self.stack.empty() and self.stack.top() != '(':
@@ -152,15 +151,6 @@ class Solution:
                 if flag == 2:
                     break
         if flag < 2:
-            return None
-
-        counter = 0
-        for element in expression:
-            if element == '(':
-                counter += 1
-            if element == ')':
-                counter -= 1
-        if counter != 0:
             return None
         answer = []
         expression = expression.split()

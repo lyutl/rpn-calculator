@@ -17,7 +17,6 @@ class CalculateExpression(unittest.TestCase):
         """
         Checks calculations with random numbers
         """
-
         nums = [random.randint(1, 1000) for i in range(5)]
 
         equation = f'{nums[1]} * {nums[2]} + {nums[0]} ^ 4 - {nums[3]} / {nums[4]}'
@@ -155,7 +154,7 @@ class WrongInputExpression(unittest.TestCase):
 
     def test_only_operation_digits(self):
         """
-        Tests if program returns None in case with no operation digits
+        Tests if program returns None in case with only operation digits
         """
         equation = f'+-*/()'
         expected = None

@@ -103,6 +103,7 @@ class TransformExpression:
                 counter -= 1
         if counter != 0:
             return None
+          
         postfix_exp = ''
         for el in expression:
             if isinstance(el, (float, int)):
@@ -143,7 +144,6 @@ class Solution:
         """
         if not expression:
             return None
-
         flag = 0
         for element in expression:
             if element.isdigit():

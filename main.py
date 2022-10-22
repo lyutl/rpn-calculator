@@ -5,9 +5,10 @@ Reverse Polish Notation Calculator
 from tkinter import *
 
 win = Tk()
-win.geometry("312x324")  
+win.geometry("312x324")
 win.resizable(0, 0)
 win.title("RPN CALCULATOR")
+
 
 class Stack:
     """
@@ -50,11 +51,12 @@ class Stack:
         """
         return len(self.stack)
 
+
 class TransformExpression:
     """
     Transforms conventional notation expression to RPN expression
     """
-    
+
     def __init__(self, stack: Stack):
         self.stack = stack
         self.priority = {
@@ -72,11 +74,17 @@ class TransformExpression:
         expression = expression.replace(' ', '')
         exp_list = []
         current_number = ''
+        if expression[0] == '-':
+            expression = '0' + expression
         for element in expression:
             if element.isdigit() or element == '.':
                 current_number += element
+            elif exp_list and exp_list[-1] == '(' and element == '-' and not current_number:
+                exp_list.append('0')
+                exp_list.append(element)
             else:
-                exp_list.append(current_number)
+                if current_number:
+                    exp_list.append(current_number)
                 exp_list.append(element)
                 current_number = ''
         exp_list.append(current_number)
@@ -125,7 +133,7 @@ class Solution:
     """
     Calculates solution for RPN expression
     """
-    
+
     def __init__(self, expression: str):
         self.post = expression
 
@@ -137,7 +145,7 @@ class Solution:
             return None
         answer = []
         expression = expression.split()
-        stack_solution = [] 
+        stack_solution = []
         for element in expression:
             if element.isdigit():
                 stack_solution.append(int(element))
@@ -172,16 +180,19 @@ if __name__ == '__main__':
     expression = ""
     stack_test = Stack()
     RPN = TransformExpression(stack_test)
-    
+
+
 def btn_click(item):
     global expression
     expression = expression + str(item)
     input_text.set(expression)
 
+
 def bt_clear():
     global expression
     expression = ""
     input_text.set("")
+
 
 def bt_equal():
     global expression
@@ -194,7 +205,8 @@ def bt_equal():
         result = float(result_str)
     input_text.set(result)
     expression = result_str
-    
+
+
 input_text = StringVar()
 
 input_frame = Frame(win, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black",
@@ -210,9 +222,9 @@ btns_frame.pack()
 clear = Button(btns_frame, text="C", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
                command=lambda: bt_clear()).grid(row=0, column=0, padx=1, pady=1)
 left_bracket = Button(btns_frame, text="(", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
-               command=lambda: btn_click('(')).grid(row=0, column=1, padx=1, pady=1)
+                      command=lambda: btn_click('(')).grid(row=0, column=1, padx=1, pady=1)
 right_bracket = Button(btns_frame, text=")", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
-               command=lambda: btn_click(')')).grid(row=0, column=2, padx=1, pady=1)
+                       command=lambda: btn_click(')')).grid(row=0, column=2, padx=1, pady=1)
 divide = Button(btns_frame, text="/", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
                 command=lambda: btn_click("/")).grid(row=0, column=3, padx=1, pady=1)
 seven = Button(btns_frame, text="7", fg="black", width=10, height=3, bd=0, bg="#fff", cursor="hand2",
@@ -242,7 +254,7 @@ plus = Button(btns_frame, text="+", fg="black", width=10, height=3, bd=0, bg="#e
 zero = Button(btns_frame, text="0", fg="black", width=10, height=3, bd=0, bg="#fff", cursor="hand2",
               command=lambda: btn_click(0)).grid(row=4, column=0, padx=1, pady=1)
 exponentiation = Button(btns_frame, text="x^y", fg="black", width=10, height=3, bd=0, bg="#fff", cursor="hand2",
-              command=lambda: btn_click("^")).grid(row=4, column=1, padx=1, pady=1)
+                        command=lambda: btn_click("^")).grid(row=4, column=1, padx=1, pady=1)
 point = Button(btns_frame, text=".", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
                command=lambda: btn_click(".")).grid(row=4, column=2, padx=1, pady=1)
 equals = Button(btns_frame, text="=", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",

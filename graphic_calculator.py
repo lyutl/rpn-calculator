@@ -71,7 +71,7 @@ btns_frame.pack()
 CLEAR = Button(btns_frame,text="C",fg="black", width=10, height=3, bd=0, bg="#eee", \
                cursor="hand2", command=lambda: bt_clear()).grid(row=0, column=0, padx=1, pady=1)
 LEFT_BRACKET = Button(btns_frame,text="(",fg="black", width=10, height=3, bd=0, bg="#eee", \
-                      cursor="hand2",command=lambda:btn_click('(')).grid(row=0, column=1, padx=1, pady=1)
+                      cursor="hand2",command=lambda:btn_click('(')).grid(row=0, column=1, padx=1, pady=1, return)
 RIGHT_BRACKET = Button(btns_frame,text=")",fg="black", width=10, height=3, bd=0, bg="#eee", \
                        cursor="hand2",command=lambda:btn_click(')')).grid(row=0,column=2,padx=1,pady=1)
 DIVIDE = Button(btns_frame,text="/",fg="black", width=10, height=3, bd=0, bg="#eee", \

@@ -28,7 +28,6 @@ def bt_click(item):
                          '.+', '.-', '.*', './', '.^']
     if EXPRESSION[-2:] in unexpected_combos:
         EXPRESSION = EXPRESSION[:-1]
-        return EXPRESSION
     input_text.set(EXPRESSION)
 
 
@@ -52,7 +51,6 @@ def bt_equal():
     if result_str[-2:] == '01':
         result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01', '', result_str)
         result = float(result_str)
-        return result_str
     input_text.set(result)
     EXPRESSION = result_str
 

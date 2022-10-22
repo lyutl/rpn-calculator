@@ -19,13 +19,13 @@ class CalculateExpression(unittest.TestCase):
         """
         nums = [random.randint(1, 1000) for i in range(5)]
 
-        equation = f'{nums[1]} * {nums[2]} + {nums[0]} ^ 4 - {nums[3]} / {nums[4]}'
-        print(equation)
+        expression = f'{nums[1]} * {nums[2]} + {nums[0]} ^ 4 - {nums[3]} / {nums[4]}'
+        print(expression)
         expected = nums[1] * nums[2] + nums[0] ** 4 - nums[3] / nums[4]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
@@ -39,13 +39,33 @@ class CalculateExpression(unittest.TestCase):
         """
         nums = [random.randint(1, 1000) for i in range(6)]
 
-        equation = f'{nums[1]} * (({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]})) / {nums[5]}'
-        print(equation)
+        expression = f'{nums[1]} * (({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]})) / {nums[5]}'
+        print(expression)
         expected = nums[1] * ((nums[2] + nums[3] ** 4) - (nums[0] + nums[4])) / nums[5]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
+        post = RPN.transformation(rpn_list)
+
+        num1 = Solution(post)
+        actual = num1.display_calculation(post)
+
+        self.assertEqual(expected, actual)
+
+    def test_expression_with_negative_numbers(self):
+        """
+        Checks calculations with negative numbers
+        """
+        nums = [random.randint(1, 1000) for i in range(5)]
+
+        expression = f'-{nums[1]} * (-{nums[2]}) + (-{nums[0]} ^ 4) - (-{nums[3]}) / (-{nums[4]})'
+        print(expression)
+        expected = -nums[1] * (-nums[2]) + (-nums[0] ** 4) - (-nums[3]) / (-nums[4])
+
+        stack_test = Stack()
+        RPN = TransformExpression(stack_test)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
@@ -59,13 +79,13 @@ class CalculateExpression(unittest.TestCase):
         """
         nums = [random.uniform(1, 1000) for i in range(6)]
 
-        equation = f'{nums[1]} * ({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]}) / {nums[5]}'
-        print(equation)
+        expression = f'{nums[1]} * ({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]}) / {nums[5]}'
+        print(expression)
         expected = nums[1] * (nums[2] + nums[3] ** 4) - (nums[0] + nums[4]) / nums[5]
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
@@ -83,12 +103,12 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if non-string input returns None
         """
-        equation = [13, '*', 12, '+', 67]
+        expression = [13, '*', 12, '+', 67]
         expected = None
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
@@ -100,12 +120,12 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if input with non-suitable symbols returns None
         """
-        equation = '{5 + 67} - [b3e$%] * _89'
+        expression = '{5 + 67} - [b3e$%] * _89'
         expected = None
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)
@@ -117,13 +137,13 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if empty input returns None
         """
-        equation = ' '
+        expression = ' '
         expected = None
 
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
@@ -137,14 +157,14 @@ class WrongInputExpression(unittest.TestCase):
         """
         num = random.randint(1, 1000)
 
-        equation = f'{num}'
-        print(equation)
+        expression = f'{num}'
+        print(expression)
         expected = num
 
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
@@ -156,13 +176,13 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if program returns None in case with only operation digits
         """
-        equation = f'+-*/()'
+        expression = f'+-*/()'
         expected = None
 
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
 
@@ -174,13 +194,13 @@ class WrongInputExpression(unittest.TestCase):
         """
         Tests if program returns None in case with wrong brackets
         """
-        equation = '12 + 13 * ((14 + 15) / 16 - 17'
-        print(equation)
+        expression = '12 + 13 * ((14 + 15) / 16 - 17'
+        print(expression)
         expected = None
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
         num1 = Solution(post)

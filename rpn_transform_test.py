@@ -20,13 +20,13 @@ class RPNTransformation(unittest.TestCase):
         nums = [random.randint(1, 1000) for i in range(3)]
         flot = [random.uniform(1, 1000) for i in range(2)]
 
-        equation = f'{nums[1]} * {flot[0]} + {nums[0]} ^ 4 - {flot[1]} / {nums[2]}'
-        print(equation)
+        expression = f'{nums[1]} * {flot[0]} + {nums[0]} ^ 4 - {flot[1]} / {nums[2]}'
+        print(expression)
         expected = f'{nums[1]} {flot[0]} * {nums[0]} 4 ^ + {flot[1]} {nums[2]} / - '
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
 
         actual = RPN.transformation(rpn_list)
         print('RPN view: ', actual)
@@ -39,13 +39,13 @@ class RPNTransformation(unittest.TestCase):
         """
         nums = [random.randint(1, 1000) for i in range(6)]
 
-        equation = f'{nums[1]} * (({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]})) / {nums[5]}'
-        print(equation)
+        expression = f'{nums[1]} * (({nums[2]} + {nums[3]} ^ 4) - ({nums[0]} + {nums[4]})) / {nums[5]}'
+        print(expression)
         expected = f'{nums[1]} {nums[2]} {nums[3]} 4 ^ + {nums[0]} {nums[4]} + - * {nums[5]} / '
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
-        rpn_list = RPN.to_list(equation)
+        rpn_list = RPN.to_list(expression)
 
         actual = RPN.transformation(rpn_list)
         print('RPN view: ', actual)

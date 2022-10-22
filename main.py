@@ -103,25 +103,24 @@ class TransformExpression:
                 counter -= 1
         if counter != 0:
             return None
-          
         postfix_exp = ''
-        for el in expression:
-            if isinstance(el, (float, int)):
-                postfix_exp += str(el) + ' '
-            elif el in self.priority.keys():
+        for element in expression:
+            if isinstance(element, (float, int)):
+                postfix_exp += str(element) + ' '
+            elif element in self.priority:
                 if not self.stack.empty() and self.stack.top() != '(':
-                    if self.priority[el] > self.priority[self.stack.top()]:
-                        self.stack.push(el)
+                    if self.priority[element] > self.priority[self.stack.top()]:
+                        self.stack.push(element)
                     else:
                         while not self.stack.empty() and self.stack.top() != '(' \
-                                and self.priority[el] <= self.priority[self.stack.top()]:
+                                and self.priority[element] <= self.priority[self.stack.top()]:
                             postfix_exp += self.stack.pop() + ' '
-                        self.stack.push(el)
+                        self.stack.push(element)
                 else:
-                    self.stack.push(el)
-            elif el == '(':
-                self.stack.push(el)
-            elif el == ')':
+                    self.stack.push(element)
+            elif element == '(':
+                self.stack.push(element)
+            elif element == ')':
                 while not self.stack.empty() and self.stack.top() != '(':
                     postfix_exp += self.stack.pop() + ' '
                 self.stack.pop()
@@ -163,7 +162,7 @@ class Solution:
             else:
                 stack_solution.append(element)
         for element in stack_solution:
-            if isinstance(element, int) or isinstance(element, float):
+            if isinstance(element, (float, int)):
                 answer.append(element)
             else:
                 first_number = answer.pop()

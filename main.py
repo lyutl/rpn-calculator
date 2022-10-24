@@ -66,8 +66,6 @@ class TransformExpression:
         expression = expression.replace(' ', '')
         exp_list = []
         current_number = ''
-        if expression and expression[0] == '-':
-            expression = '0' + expression
         for element in expression:
             if element.isdigit() or element == '.':
                 current_number += element
@@ -91,18 +89,10 @@ class TransformExpression:
                 new_exp_list.append(element)
         return new_exp_list
 
-    def transformation(self, expression: list) -> str:
+    def transformation(self, expression: list) -> str or None:
         """
         Returns a string with RPN expression
         """
-        counter = 0
-        for element in expression:
-            if element == '(':
-                counter += 1
-            if element == ')':
-                counter -= 1
-        if counter != 0:
-            return None
         postfix_exp = ''
         for element in expression:
             if isinstance(element, (float, int)):
@@ -141,23 +131,17 @@ class Solution:
         """
         Returns calculated result
         """
-        if not expression:
-            return None
-        counter = 0
         answer = []
         expression = expression.split()
         stack_solution = []
         for element in expression:
             if element.isdigit():
                 stack_solution.append(int(element))
-                counter += 1
             elif '.' in element:
                 stack_solution.append(float(element))
-                counter += 1
             else:
                 stack_solution.append(element)
-        if counter < 1:
-            return None
+        result = None
         for element in stack_solution:
             if isinstance(element, (float, int)):
                 answer.append(element)
@@ -172,10 +156,39 @@ class Solution:
                     result = second_number * first_number
                 elif element == '/':
                     result = second_number / first_number
-                    c_str = str(result)
-                    if c_str[-2:] == '.0':
-                        result = int(result)
                 elif element == '^':
                     result = second_number ** first_number
                 answer.append(result)
-        return answer[-1]
+        return answer[-1] if answer else None
+
+
+def check_expression(expression):
+    """
+        Checks if an expression is correct
+    """
+    if expression and expression[0] == '-':
+        expression = '0' + expression
+    stack_list = []
+    for element in expression:
+        if element == '(':
+            stack_list.append(element)
+        elif stack_list and element == ')' and '(' == stack_list[-1]:
+            stack_list.pop()
+        elif element == ')':
+            stack_list.append(element)
+    if stack_list and ('(' in expression or ')' in expression):
+        expression = ''
+        return expression
+
+    counter_num = 0
+    counter_oper = 0
+    for index, element in enumerate(expression):
+        if element.isdigit():
+            counter_num += 1
+        elif '.' in element:
+            counter_num += 1
+        elif element in ['+', '-', '*', '/', '^'] and expression[index-1] != '(':
+            counter_oper += 1
+    if counter_oper == counter_num or counter_oper > counter_num or expression == '.':
+        expression = ''
+    return expression

@@ -75,6 +75,7 @@ CLEAR = tk.Button(btns_frame, text="C", fg="black", width=10, height=3, bd=0, bg
 LEFT_BRACKET = tk.Button(btns_frame, text="(", fg="black", width=10, height=3, bd=0, bg="#eee",
                          cursor="hand2",
                          command=lambda: bt_click('(')).grid(row=0, column=1, padx=1, pady=1)
+LEFT_BRACKET.pack()
 RIGHT_BRACKET = tk.Button(btns_frame, text=")", fg="black", width=10, height=3, bd=0, bg="#eee",
                           cursor="hand2",
                           command=lambda: bt_click(')')).grid(row=0, column=2, padx=1, pady=1)

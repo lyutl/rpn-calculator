@@ -5,7 +5,7 @@ Checks the transformation into RPN
 
 import unittest
 import random
-from main import Stack, TransformExpression
+from main import Stack, TransformExpression, check_expression
 
 
 class RPNTransformation(unittest.TestCase):
@@ -26,6 +26,7 @@ class RPNTransformation(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
 
         actual = RPN.transformation(rpn_list)
@@ -45,6 +46,7 @@ class RPNTransformation(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
 
         actual = RPN.transformation(rpn_list)

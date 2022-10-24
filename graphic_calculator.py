@@ -3,7 +3,7 @@ Reverse Polish Notation Calculator
 """
 
 import tkinter as tk
-from main import Stack, TransformExpression, Solution
+from main import Stack, TransformExpression, Solution, check_expression
 import re
 
 win = tk.Tk()
@@ -46,6 +46,7 @@ def bt_equal():
     docstring
     """
     global EXPRESSION
+    EXPRESSION = check_expression(EXPRESSION)
     rpn_list = RPN.to_list(EXPRESSION)
     num1 = Solution(RPN.transformation(rpn_list))
     result = num1.display_calculation(RPN.transformation(rpn_list))

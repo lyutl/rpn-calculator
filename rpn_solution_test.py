@@ -5,7 +5,7 @@ Checks the solution
 
 import unittest
 import random
-from main import Stack, TransformExpression, Solution
+from main import Stack, TransformExpression, Solution, check_expression
 
 
 class CalculateExpression(unittest.TestCase):
@@ -25,6 +25,7 @@ class CalculateExpression(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
@@ -45,6 +46,7 @@ class CalculateExpression(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
@@ -65,6 +67,7 @@ class CalculateExpression(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
@@ -85,6 +88,7 @@ class CalculateExpression(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
@@ -109,6 +113,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
@@ -130,6 +135,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
@@ -148,6 +154,7 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
 
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
         num1 = Solution(post)
@@ -166,6 +173,7 @@ class WrongInputExpression(unittest.TestCase):
 
         stack_test = Stack()
         RPN = TransformExpression(stack_test)
+        expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 

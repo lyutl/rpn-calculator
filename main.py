@@ -148,7 +148,7 @@ class Solution:
         expression = expression.split()
         stack_solution = []
         for element in expression:
-            if element.isdigit() or '.' in element:
+            if element.isdigit():
                 stack_solution.append(int(element))
                 counter += 1
             elif '.' in element:

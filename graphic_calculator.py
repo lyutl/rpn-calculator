@@ -3,8 +3,8 @@ Reverse Polish Notation Calculator
 """
 
 import tkinter as tk
-from main import Stack, TransformExpression, Solution, check_expression
 import re
+from main import Stack, TransformExpression, Solution, check_expression
 
 win = tk.Tk()
 win.geometry("312x324")

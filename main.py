@@ -131,8 +131,6 @@ class Solution:
         """
         Returns calculated result
         """
-        if not expression:
-            return None
         answer = []
         expression = expression.split()
         stack_solution = []
@@ -143,6 +141,7 @@ class Solution:
                 stack_solution.append(float(element))
             else:
                 stack_solution.append(element)
+        result = None
         for element in stack_solution:
             if isinstance(element, (float, int)):
                 answer.append(element)
@@ -157,16 +156,16 @@ class Solution:
                     result = second_number * first_number
                 elif element == '/':
                     result = second_number / first_number
-                    c_str = str(result)
-                    if c_str[-2:] == '.0':
-                        result = int(result)
                 elif element == '^':
                     result = second_number ** first_number
                 answer.append(result)
-        return answer[-1]
+        return answer[-1] if answer else None
 
 
 def check_expression(expression):
+    """
+        Checks if an expression is correct
+    """
     if expression and expression[0] == '-':
         expression = '0' + expression
     stack_list = []

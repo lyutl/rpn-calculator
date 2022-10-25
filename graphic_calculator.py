@@ -18,6 +18,9 @@ if __name__ == '__main__':
 
 
 class Calculator:
+    """
+    Actions for calculator buttons
+    """
     def __init__(self):
         self.expression = ""
 
@@ -52,7 +55,8 @@ class Calculator:
         result = num1.display_calculation(num1.to_list(rpn_str))
         result_str = str(result)
         if result_str[-2:] == '01':
-            result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01', '', result_str)
+            result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01',
+                                '', result_str)
             result = float(result_str)
         self.expression = ""
         input_text.set(result)

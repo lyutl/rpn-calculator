@@ -47,7 +47,6 @@ def bt_equal():
     """
     global EXPRESSION
     EXPRESSION = check_expression(EXPRESSION)
-    stack_test = Stack()
     rpn_list = RPN.to_list(EXPRESSION)
     num1 = Solution(stack_test)
     result = num1.display_calculation(RPN.transformation(rpn_list))

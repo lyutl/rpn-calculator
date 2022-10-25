@@ -127,12 +127,17 @@ class Solution:
     def __init__(self, stack: Stack):
         self.stack = stack
 
-    def display_calculation(self, expression: str) -> list or None:
+    def to_list(self, expression: str) -> list:
+        """
+        Returns a list of elements of expression
+        """
+        return expression.split()
+
+    def display_calculation(self, expression: list) -> list or None:
         """
         Returns calculated result
         """
         result = None
-        expression = expression.split()
         for element in expression:
             if element.isdigit():
                 self.stack.push(int(element))

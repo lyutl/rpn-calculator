@@ -49,7 +49,8 @@ def bt_equal():
     EXPRESSION = check_expression(EXPRESSION)
     rpn_list = RPN.to_list(EXPRESSION)
     num1 = Solution(stack_test)
-    result = num1.display_calculation(RPN.transformation(rpn_list))
+    rpn_str = RPN.transformation(rpn_list)
+    result = num1.display_calculation(num1.to_list(rpn_str))
     result_str = str(result)
     if result_str[-2:] == '01':
         result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01', '', result_str)

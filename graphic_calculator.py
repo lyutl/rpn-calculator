@@ -48,8 +48,9 @@ def bt_equal():
     global EXPRESSION
     EXPRESSION = check_expression(EXPRESSION)
     rpn_list = RPN.to_list(EXPRESSION)
-    num1 = Solution(RPN.transformation(rpn_list))
-    result = num1.display_calculation(RPN.transformation(rpn_list))
+    num1 = Solution(stack_test)
+    rpn_str = RPN.transformation(rpn_list)
+    result = num1.display_calculation(num1.to_list(rpn_str))
     result_str = str(result)
     if result_str[-2:] == '01':
         result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01', '', result_str)
@@ -71,7 +72,7 @@ btns_frame = tk.Frame(win, width=312, height=272.5, bg="grey")
 btns_frame.pack()
 
 CLEAR = tk.Button(btns_frame, text="C", fg="black", width=10, height=3, bd=0, bg="#eee",
-                  cursor="hand2", command=lambda: bt_clear()).grid(row=0, column=0, padx=1, pady=1)
+                  cursor="hand2", command=bt_clear).grid(row=0, column=0, padx=1, pady=1)
 LEFT_BRACKET = tk.Button(btns_frame, text="(", fg="black", width=10, height=3, bd=0, bg="#eee",
                          cursor="hand2",
                          command=lambda: bt_click('(')).grid(row=0, column=1, padx=1, pady=1)
@@ -128,6 +129,6 @@ POINT = tk.Button(btns_frame, text=".", fg="black", width=10, height=3, bd=0, bg
                   command=lambda: bt_click(".")).grid(row=4, column=2, padx=1, pady=1)
 EQUALS = tk.Button(btns_frame, text="=", fg="black", width=10, height=3, bd=0, bg="#eee",
                    cursor="hand2",
-                   command=lambda: bt_equal()).grid(row=4, column=3, padx=1, pady=1)
+                   command=bt_equal).grid(row=4, column=3, padx=1, pady=1)
 
 win.mainloop()

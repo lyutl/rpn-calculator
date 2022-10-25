@@ -124,30 +124,23 @@ class Solution:
     Calculates solution for RPN expression
     """
 
-    def __init__(self, expression: str):
-        self.post = expression
+    def __init__(self, stack: Stack):
+        self.stack = stack
 
     def display_calculation(self, expression: str) -> list or None:
         """
         Returns calculated result
         """
-        answer = []
+        result = None
         expression = expression.split()
-        stack_solution = []
         for element in expression:
             if element.isdigit():
-                stack_solution.append(int(element))
+                self.stack.push(int(element))
             elif '.' in element:
-                stack_solution.append(float(element))
+                self.stack.push(float(element))
             else:
-                stack_solution.append(element)
-        result = None
-        for element in stack_solution:
-            if isinstance(element, (float, int)):
-                answer.append(element)
-            else:
-                first_number = answer.pop()
-                second_number = answer.pop()
+                first_number = self.stack.pop()
+                second_number = self.stack.pop()
                 if element == "+":
                     result = second_number + first_number
                 elif element == '-':
@@ -158,13 +151,13 @@ class Solution:
                     result = second_number / first_number
                 elif element == '^':
                     result = second_number ** first_number
-                answer.append(result)
-        return answer[-1] if answer else None
+                self.stack.push(result)
+        return self.stack.pop() if not self.stack.empty() else None
 
 
 def check_expression(expression):
     """
-        Checks if an expression is correct
+    Checks if an expression is correct
     """
     if expression and expression[0] == '-':
         expression = '0' + expression

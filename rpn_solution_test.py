@@ -5,7 +5,8 @@ Checks the solution
 
 import unittest
 import random
-from main import Stack, TransformExpression, Solution, check_expression
+from main import TransformExpression, Calculator, check_expression
+from stack import Stack
 
 
 class CalculateExpression(unittest.TestCase):
@@ -29,7 +30,7 @@ class CalculateExpression(unittest.TestCase):
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
         actual = num1.display_calculation(exp_list)
 
@@ -51,7 +52,7 @@ class CalculateExpression(unittest.TestCase):
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
         actual = num1.display_calculation(exp_list)
 
@@ -73,7 +74,7 @@ class CalculateExpression(unittest.TestCase):
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
         actual = num1.display_calculation(exp_list)
 
@@ -95,7 +96,7 @@ class CalculateExpression(unittest.TestCase):
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
         actual = num1.display_calculation(exp_list)
 
@@ -120,7 +121,7 @@ class WrongInputExpression(unittest.TestCase):
         expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
         actual = num1.display_calculation(exp_list)
@@ -143,7 +144,7 @@ class WrongInputExpression(unittest.TestCase):
         expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
         actual = num1.display_calculation(exp_list)
@@ -163,7 +164,7 @@ class WrongInputExpression(unittest.TestCase):
         expression = check_expression(expression)
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
         actual = num1.display_calculation(exp_list)
@@ -184,7 +185,7 @@ class WrongInputExpression(unittest.TestCase):
         rpn_list = RPN.to_list(expression)
         post = RPN.transformation(rpn_list)
 
-        num1 = Solution(stack_test)
+        num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
         actual = num1.display_calculation(exp_list)
 

@@ -5,7 +5,8 @@ Checks the transformation into RPN
 
 import unittest
 import random
-from main import Stack, TransformExpression, check_expression
+from main import TransformExpression, check_expression
+from stack import Stack
 
 
 class RPNTransformation(unittest.TestCase):

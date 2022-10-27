@@ -149,6 +149,7 @@ def check_expression(expression):
             counter_num += 1
         elif element in ['+', '-', '*', '/', '^'] and expression[index-1] != '(':
             counter_oper += 1
-    if counter_oper == counter_num or counter_oper > counter_num or expression == '.':
+    if counter_oper == counter_num or counter_oper > counter_num or expression == '.' \
+            or '/0' in expression:
         expression = ''
     return expression

@@ -14,7 +14,7 @@ class ButtonAction:
     def __init__(self, input_text):
         self.expression = ""
         self.stack = Stack()
-        self.RPN = TransformExpression(self.stack)
+        self.rpn = TransformExpression(self.stack)
         self.input_text = input_text
 
     def bt_click(self, item):
@@ -42,9 +42,9 @@ class ButtonAction:
         Outputs the result of expression
         """
         self.expression = check_expression(self.expression)
-        rpn_list = self.RPN.to_list(self.expression)
+        rpn_list = self.rpn.to_list(self.expression)
         num1 = Calculator(self.stack)
-        rpn_str = self.RPN.transformation(rpn_list)
+        rpn_str = self.rpn.transformation(rpn_list)
         result = num1.display_calculation(num1.to_list(rpn_str))
         result_str = str(result)
         if result_str[-2:] == '01':

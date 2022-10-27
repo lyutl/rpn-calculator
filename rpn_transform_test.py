@@ -26,11 +26,11 @@ class RPNTransformation(unittest.TestCase):
         expected = f'{nums[1]} {flot[0]} * {nums[0]} 4 ^ + {flot[1]} {nums[2]} / - '
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
+        rpn_list = rpn.to_list(expression)
 
-        actual = RPN.transformation(rpn_list)
+        actual = rpn.transformation(rpn_list)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)
@@ -46,11 +46,11 @@ class RPNTransformation(unittest.TestCase):
         expected = f'{nums[1]} {nums[2]} {nums[3]} 4 ^ + {nums[0]} {nums[4]} + - * {nums[5]} / '
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
+        rpn_list = rpn.to_list(expression)
 
-        actual = RPN.transformation(rpn_list)
+        actual = rpn.transformation(rpn_list)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)

@@ -25,10 +25,10 @@ class CalculateExpression(unittest.TestCase):
         expected = nums[1] * nums[2] + nums[0] ** 4 - nums[3] / nums[4]
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
 
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
@@ -47,10 +47,10 @@ class CalculateExpression(unittest.TestCase):
         expected = nums[1] * ((nums[2] + nums[3] ** 4) - (nums[0] + nums[4])) / nums[5]
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
 
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
@@ -69,10 +69,10 @@ class CalculateExpression(unittest.TestCase):
         expected = -nums[1] * (-nums[2]) + (-nums[0] ** 4) - (-nums[3]) / (-nums[4])
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
 
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
@@ -91,10 +91,10 @@ class CalculateExpression(unittest.TestCase):
         expected = nums[1] * (nums[2] + nums[3] ** 4) - (nums[0] + nums[4]) / nums[5]
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
 
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
@@ -117,10 +117,10 @@ class WrongInputExpression(unittest.TestCase):
 
         stack_test = Stack()
 
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
@@ -140,10 +140,10 @@ class WrongInputExpression(unittest.TestCase):
 
         stack_test = Stack()
 
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
@@ -160,10 +160,10 @@ class WrongInputExpression(unittest.TestCase):
 
         stack_test = Stack()
 
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)
 
@@ -180,10 +180,10 @@ class WrongInputExpression(unittest.TestCase):
         expected = None
 
         stack_test = Stack()
-        RPN = TransformExpression(stack_test)
+        rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = RPN.to_list(expression)
-        post = RPN.transformation(rpn_list)
+        rpn_list = rpn.to_list(expression)
+        post = rpn.transformation(rpn_list)
 
         num1 = Calculator(stack_test)
         exp_list = num1.to_list(post)

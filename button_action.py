@@ -42,10 +42,9 @@ class ButtonAction:
         Outputs the result of expression
         """
         self.expression = check_expression(self.expression)
-        rpn_list = self.rpn.to_list(self.expression)
         num1 = Calculator(self.stack)
-        rpn_str = self.rpn.transformation(rpn_list)
-        result = num1.display_calculation(num1.to_list(rpn_str))
+        rpn_str = self.rpn.transformation(self.expression)
+        result = num1.display_calculation(rpn_str)
         result_str = str(result)
         if result_str[-2:] == '01':
             result_str = re.sub('[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?[0]?01',

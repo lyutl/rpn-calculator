@@ -1,4 +1,4 @@
-# Techincal Documentation for [RPN Calculator](https://github.com/lyutl/rpn-calculator)
+# Technical Documentation for [RPN Calculator](https://github.com/lyutl/rpn-calculator)
 
 [README.md](https://github.com/lyutl/rpn-calculator/README.md)
 

@@ -2,7 +2,7 @@
 Reverse Polish Notation Calculator
 """
 
-
+import operator
 from stack import Stack
 from transform_to_list import conv_to_list, rpn_to_list
 
@@ -59,6 +59,9 @@ class Calculator:
 
     def __init__(self, stack: Stack):
         self.stack = stack
+        self.math_operators = {'+': operator.add, '-': operator.sub,
+                               '*': operator.mul, '/': operator.truediv,
+                               '^': operator.pow}
 
     def display_calculation(self, expression: str) -> list or None:
         """
@@ -70,19 +73,10 @@ class Calculator:
                 self.stack.push(int(element))
             elif '.' in element:
                 self.stack.push(float(element))
-            else:
+            elif element in self.math_operators:
                 first_number = self.stack.pop()
                 second_number = self.stack.pop()
-                if element == "+":
-                    result = second_number + first_number
-                elif element == '-':
-                    result = second_number - first_number
-                elif element == '*':
-                    result = second_number * first_number
-                elif element == '/':
-                    result = second_number / first_number
-                elif element == '^':
-                    result = second_number ** first_number
+                result = self.math_operators[element](second_number, first_number)
                 self.stack.push(result)
         return self.stack.pop() if not self.stack.empty() else None
 

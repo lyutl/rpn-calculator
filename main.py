@@ -67,7 +67,6 @@ class Calculator:
         """
         Returns calculated result
         """
-        result = None
         for element in rpn_to_list(expression):
             if element.isdigit():
                 self.stack.push(int(element))

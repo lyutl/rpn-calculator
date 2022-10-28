@@ -36,7 +36,7 @@ class ButtonAction:
         """
         self.expression = ""
         self.input_text.set("")
-        
+
     def bt_character_clear(self):
         """
         Deletes last inputted character

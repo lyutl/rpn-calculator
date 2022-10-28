@@ -28,9 +28,8 @@ class RPNTransformation(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
 
-        actual = rpn.transformation(rpn_list)
+        actual = rpn.transformation(expression)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)
@@ -48,9 +47,8 @@ class RPNTransformation(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
 
-        actual = rpn.transformation(rpn_list)
+        actual = rpn.transformation(expression)
         print('RPN view: ', actual)
 
         self.assertEqual(expected, actual)

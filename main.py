@@ -4,6 +4,7 @@ Reverse Polish Notation Calculator
 
 
 from stack import Stack
+from transform_to_list import conv_to_list, rpn_to_list
 
 
 class TransformExpression:
@@ -21,42 +22,12 @@ class TransformExpression:
             '^': 3
         }
 
-    def to_list(self, expression: str) -> list:
-        """
-        Returns a list of elements of expression
-        """
-        expression = expression.replace(' ', '')
-        exp_list = []
-        current_number = ''
-        for element in expression:
-            if element.isdigit() or element == '.':
-                current_number += element
-            elif exp_list and exp_list[-1] == '(' and element == '-' and not current_number:
-                exp_list.append('0')
-                exp_list.append(element)
-            else:
-                if current_number:
-                    exp_list.append(current_number)
-                exp_list.append(element)
-                current_number = ''
-        exp_list.append(current_number)
-
-        new_exp_list = []
-        for element in exp_list:
-            if element.isdigit():
-                new_exp_list.append(int(element))
-            elif '.' in element:
-                new_exp_list.append(float(element))
-            else:
-                new_exp_list.append(element)
-        return new_exp_list
-
-    def transformation(self, expression: list) -> str or None:
+    def transformation(self, expression: str) -> str or None:
         """
         Returns a string with RPN expression
         """
         postfix_exp = ''
-        for element in expression:
+        for element in conv_to_list(expression):
             if isinstance(element, (float, int)):
                 postfix_exp += str(element) + ' '
             elif element in self.priority:
@@ -89,18 +60,12 @@ class Calculator:
     def __init__(self, stack: Stack):
         self.stack = stack
 
-    def to_list(self, expression: str) -> list:
-        """
-        Returns a list of elements of expression
-        """
-        return expression.split()
-
-    def display_calculation(self, expression: list) -> list or None:
+    def display_calculation(self, expression: str) -> list or None:
         """
         Returns calculated result
         """
         result = None
-        for element in expression:
+        for element in rpn_to_list(expression):
             if element.isdigit():
                 self.stack.push(int(element))
             elif '.' in element:

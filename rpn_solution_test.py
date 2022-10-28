@@ -27,12 +27,10 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
 
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -49,12 +47,10 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
 
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -71,12 +67,10 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
 
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -93,12 +87,10 @@ class CalculateExpression(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
 
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -119,12 +111,10 @@ class WrongInputExpression(unittest.TestCase):
 
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
 
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -142,12 +132,10 @@ class WrongInputExpression(unittest.TestCase):
 
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
 
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -162,12 +150,10 @@ class WrongInputExpression(unittest.TestCase):
 
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
 
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)
 
@@ -182,11 +168,9 @@ class WrongInputExpression(unittest.TestCase):
         stack_test = Stack()
         rpn = TransformExpression(stack_test)
         expression = check_expression(expression)
-        rpn_list = rpn.to_list(expression)
-        post = rpn.transformation(rpn_list)
+        post = rpn.transformation(expression)
 
         num1 = Calculator(stack_test)
-        exp_list = num1.to_list(post)
-        actual = num1.display_calculation(exp_list)
+        actual = num1.display_calculation(post)
 
         self.assertEqual(expected, actual)

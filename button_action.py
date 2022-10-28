@@ -42,8 +42,8 @@ class ButtonAction:
         Deletes last inputted character
         """
         self.expression = check_expression(self.expression)
-        result = self.expression[:-1]
-        self.input_text.set(result)
+        self.expression = self.expression[:-1]
+        self.input_text.set(self.expression)
 
     def bt_equal(self):
         """

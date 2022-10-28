@@ -43,7 +43,9 @@ Example:
 `(`, `)` Parentheses.  
 Used to enclose a group of objects that should be operated on as a single unit.
 
-> `C` Erases the entire expression.
+> `C` Erases the entire expression.  
+
+> `⌫` Deletes the character to the left of the cursor.
 
 ### Wrong input
 In the case of wrong input calculator returns `None` value as soon as `=` button is pressed.

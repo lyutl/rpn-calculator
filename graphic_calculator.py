@@ -7,7 +7,7 @@ from button_action import ButtonAction
 
 
 win = tk.Tk()
-win.geometry("312x324")
+win.geometry("390x324")
 win.resizable(0, 0)
 win.title("RPN CALCULATOR")
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
 input_text = tk.StringVar()
 button = ButtonAction(input_text)
 
-input_frame = tk.Frame(win, width=312, height=50, bd=0, highlightbackground="black",
+input_frame = tk.Frame(win, width=390, height=50, bd=0, highlightbackground="black",
                        highlightcolor="black", highlightthickness=2)
 input_frame.pack(side=tk.TOP)
 
@@ -26,7 +26,7 @@ input_field = tk.Entry(input_frame, font=('arial', 18, 'bold'), textvariable=inp
 input_field.grid(row=0, column=0)
 input_field.pack(ipady=10)
 
-buttons_frame = tk.Frame(win, width=312, height=272.5, bg="grey")
+buttons_frame = tk.Frame(win, width=390, height=272.5, bg="grey")
 buttons_frame.pack()
 
 CLEAR = tk.Button(buttons_frame, text="C", fg="black", width=10, height=3, bd=0, bg="#eee",

@@ -11,6 +11,7 @@ class TransformExpression:
     """
     Transforms conventional notation expression to RPN expression
     """
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, stack: Stack):
         self.stack = stack
@@ -56,6 +57,7 @@ class Calculator:
     """
     Calculates solution for RPN expression
     """
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, stack: Stack):
         self.stack = stack
